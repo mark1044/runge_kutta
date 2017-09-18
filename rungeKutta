@@ -1,0 +1,55 @@
+%FOURTH ODER RUNGE-KUTTA OVER SECOND ORDER ODE SYSTEM
+%SINE-GORDON
+
+% u_{tt} = u_{xx} - sin(u) eq.1
+
+% WE NOW CONVERT TO A SYSTEM OF FIRST ORDER PDEs
+% LET,  u_{t} = v eq.2
+
+%        v_{t} = u_{xx} - sin(u) eq.3
+
+% WE THEN TRANSFORM THE ABOVE PDE SYSTEM INTO SYSTEM OF ODE
+% WE DO THIS THROUGH THE USE OF FINITE DIFFRENCE EQUATION
+
+% v_{t} = AU + SIN(U) eq.4
+% WHERE A=> TOEPLITS CIRCULANT MATRIX MATRIX, WITH INFINATE BOUNDRY
+% CONDITIONS ******
+
+% NOTE* THAT THE MATRIX U IS IN TERMS OF u(x,t) WHOSE INITIAL CONDITION IS
+% GIVEN AND u(t) = V WHOSE INITIAL CONDITION WE ALSO HAVE
+
+% WE NOW TRANSFORM OUR NEWLY CREATED SYSTEM OF ODEs INTO MATRIX FORM
+% XM_{t} = [ u_{T} v_{t} ] = [ V ( AU + SIN(U) ) ]
+
+% WE ALSO CONSTRUCT THE FUNCTION F(x,t,Z) = [ V ( AU + SIN(U) ) ], 
+% WHERE Z = [ V U ], X = [, U = [ u(x_{i},t) ]
+% NOTE* THAT Z_{init} = [ u_{t}(x,0) u{x,0) ]
+%
+
+ax = -40;
+bx = 40;             % heat conduction coefficient:
+               % final time
+               c = 0.5; % velocity of the solitary wave
+ 
+h = (bx-ax)/(m+1); 
+h = (bx-ax)/(m+1);         % h = delta x
+x = linspace(ax,bx,m+2);  % note x(1)=0 and x(m+2)=1
+t = linspace(ax,bx,m+2);
+Tfinal = 5;                       % u(1)=g0 and u(m+2)=g1 are known from BC's
+k=(1/25)*h;% time step equals space delta(x) *****MUST CHANGE TO ACCOUNT SECOND ORDER 
+Tsteps = (Tfinal / k);
+
+%initial conditions 
+unot = @(y)4*atan(exp(y/sqrt(1-(c^2))));
+d_dx_unot = @(y)(4*c*exp(y/sqrt( 1-(c^2) )))/(( sqrt( 1-( c^2 ) ))*(1+exp(2*(y/sqrt(1-(c^2)))))); % d/dt(u(x,0))
+
+
+
+Tgrunt = 0;%% => time steps that the function has gone through
+for n=1:Tsteps-1
+    
+    
+    k_1 = Xfunc(x,Tgrunt,[  ]
+    
+    Tgrunt = Tgrunt + k;
+end
